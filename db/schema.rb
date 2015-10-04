@@ -36,18 +36,18 @@ ActiveRecord::Schema.define(version: 20151004105140) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.integer  "batch_id",     limit: 4
-    t.integer  "timetable_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",          limit: 255
+    t.integer  "batch_id",      limit: 4
+    t.integer  "time_table_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "slots", force: :cascade do |t|
     t.string   "label",       limit: 255
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "day",         limit: 4
+    t.string   "day",         limit: 255
     t.integer  "teacher_id",  limit: 4
     t.integer  "room_id",     limit: 4
     t.integer  "schedule_id", limit: 4
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20151004105140) do
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name",          limit: 255
-    t.string   "string",        limit: 255
     t.string   "code",          limit: 255
     t.integer  "department_id", limit: 4
     t.datetime "created_at",                null: false

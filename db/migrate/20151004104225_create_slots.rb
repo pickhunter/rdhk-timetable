@@ -4,7 +4,7 @@ class CreateSlots < ActiveRecord::Migration
       t.string :label
       t.datetime :start_time
       t.datetime :end_time
-      t.integer :day
+      t.string :day
 
       t.belongs_to :teacher
       t.belongs_to :room

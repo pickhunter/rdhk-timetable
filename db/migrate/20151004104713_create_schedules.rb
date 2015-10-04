@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.string :name
 
       t.belongs_to :batch
-      t.belongs_to :timetable
+      t.belongs_to :time_table
 
       t.timestamps null: false
     end
