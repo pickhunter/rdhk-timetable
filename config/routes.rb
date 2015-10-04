@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :departments
+  resources :departments
   resources :time_tables
   resources :departments
   resources :teachers
