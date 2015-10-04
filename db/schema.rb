@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20151004105140) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
