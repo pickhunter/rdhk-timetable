@@ -45,7 +45,7 @@ group :development do
   gem 'spring'
   gem 'pry'
   gem "awesome_print"
-  gem 'mysql2'
+  gem 'mysql'
 end
 
 gem 'simple_form'
