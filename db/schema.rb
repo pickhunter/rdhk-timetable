@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022040728) do
+ActiveRecord::Schema.define(version: 20151022042037) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20151022040728) do
     t.integer  "room_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "slot_id",    limit: 4
   end
+
+  add_index "bookings", ["slot_id"], name: "index_bookings_on_slot_id", using: :btree
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255

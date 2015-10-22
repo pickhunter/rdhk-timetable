@@ -1,5 +1,6 @@
 class Booking < ActiveRecord::Base
   belongs_to :teacher
+  belongs_to :slot
   belongs_to :room
   has_many :batches
 
