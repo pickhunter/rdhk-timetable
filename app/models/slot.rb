@@ -1,8 +1,4 @@
 class Slot < ActiveRecord::Base
-  belongs_to :teacher
-  belongs_to :room
-  belongs_to :schedule
-
   has_many :bookings
 
   validates :label, presence: true

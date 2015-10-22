@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004105140) do
+ActiveRecord::Schema.define(version: 20151022034855) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "start_time"
     t.datetime "end_time"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "teacher_id", limit: 4
+    t.integer  "room_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -44,15 +52,12 @@ ActiveRecord::Schema.define(version: 20151004105140) do
   end
 
   create_table "slots", force: :cascade do |t|
-    t.string   "label",       limit: 255
+    t.string   "label",      limit: 255
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "day",         limit: 255
-    t.integer  "teacher_id",  limit: 4
-    t.integer  "room_id",     limit: 4
-    t.integer  "schedule_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "day",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "teachers", force: :cascade do |t|
