@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022034855) do
+ActiveRecord::Schema.define(version: 20151022040728) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -52,13 +52,16 @@ ActiveRecord::Schema.define(version: 20151022034855) do
   end
 
   create_table "slots", force: :cascade do |t|
-    t.string   "label",      limit: 255
+    t.string   "label",         limit: 255
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "day",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "day",           limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "time_table_id", limit: 4
   end
+
+  add_index "slots", ["time_table_id"], name: "index_slots_on_time_table_id", using: :btree
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name",          limit: 255
