@@ -59,4 +59,5 @@ gem 'httparty'
 gem 'cancancan'
 gem "font-awesome-rails"
 gem "autoprefixer-rails"
+gem "rails-erd"
 
