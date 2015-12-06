@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
 	  @user = User.find_by(username: params[:session][:username])
 	  if @user && @user.authenticate(params[:session][:password])
 	    session[:user_id] = @user.id
-	    redirect_to '/departments'
+	    session[:username] = @user.username
+	    redirect_to '/home/index'
 	  else
 	  	flash[:danger] = 'Invalid email/password combination'
 	    # redirect_to(action: 'new')

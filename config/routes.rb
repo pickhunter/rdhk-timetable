@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'subjects/index'
+
+  get 'home/index'
+
   resources :bookings
   resources :departments
   resources :departments

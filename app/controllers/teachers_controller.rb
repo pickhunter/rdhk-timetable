@@ -1,11 +1,13 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-  before_action :require_user
+  before_action :confirm_logged_in
 
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @dept_name = session[:username]
+    @dept = Department.find_by(:code => @dept_name)
+    @teachers = @dept.teachers
   end
 
   # GET /teachers/1
