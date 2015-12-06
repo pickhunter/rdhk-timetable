@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_logged_in
 
   # GET /departments
   # GET /departments.json
@@ -69,6 +70,7 @@ class DepartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def department_params
-      params[:department]
+      # params[:department]
+      params.require(:department).permit(:name, :code)
     end
 end

@@ -1,5 +1,6 @@
 class TimeTablesController < ApplicationController
   before_action :set_time_table, only: [:show, :edit, :update, :destroy]
+  before_action :require_user
 
   # GET /time_tables
   # GET /time_tables.json
