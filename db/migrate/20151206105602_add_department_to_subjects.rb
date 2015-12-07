@@ -3,3 +3,4 @@ class AddDepartmentToSubjects < ActiveRecord::Migration
     add_reference :subjects, :department, index: true, foreign_key: true
   end
 end
+	

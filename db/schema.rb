@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206124128) do
+ActiveRecord::Schema.define(version: 20151207091854) do
 
   create_table "batches", force: :cascade do |t|
     t.string   "name"
@@ -77,6 +77,11 @@ ActiveRecord::Schema.define(version: 20151206124128) do
   end
 
   add_index "subjects", ["department_id"], name: "index_subjects_on_department_id"
+
+  create_table "subjects_teachers", id: false, force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "teacher_id"
+  end
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name"

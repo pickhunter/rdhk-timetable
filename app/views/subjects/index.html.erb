@@ -1,11 +1,14 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing subjects</h1>
+    <% if params[:assigns]=='1' %>
+    <h1><%= @teacher.name %></h1>
+<div class="pull-right">    
+    <h1>Currently Assigned subjects</h1>
 
-<table>
+<table class="table ">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="1">Subject</th>
+      <th colspan="1">Unassign</th>
     </tr>
   </thead>
 
@@ -13,12 +16,64 @@
     <% @subjects.each do |subject| %>
       <tr>
         <td> <%= subject.name %></td>
+        <td> <%= link_to 'Unassign Subject', teacher_subject_path(@teacher.id,subject.id), method: :delete %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div class="pull-left">    
+    <h1>Assign more subjects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="1">Subject</th>
+      <th colspan="1">Assign Subject</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notsubjects.each do |subject| %>
+      <tr>
+        <td> <%= subject.name %></td>
+        <td> <%= link_to 'Assign Subject', teacher_subject_path(@teacher.id,subject.id), method: :patch %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+      
+<% else %>
+
+<h1>Listing subjects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="1">Name</th>
+      <th colspan="1">Code</th>
+      <th colspan="1">Year</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td> <%= subject.name %></td>
+        <td> <%= subject.code %></td>
         <td> <%= subject.semester/2 + 1 %></td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
+
 
 <br>
 

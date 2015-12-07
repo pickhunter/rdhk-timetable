@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :departments
   resources :time_tables
   resources :departments
-  resources :teachers
+  resources :teachers do resources:subjects end
   resources :rooms
   resources :slots
   get 'login' => 'sessions#new'
