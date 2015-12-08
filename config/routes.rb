@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'batch_subjects/index'
+
+  patch 'batch_subjects/:id' => 'batch_subjects#update' , :as => 'edit_batch_subject'
+  get 'batch_subjects/:id' => 'batch_subjects#show'
+
   get 'subjects/index'
 
   get 'home/index'
-
+  # resources :batch_subjects , only: [:show, :index , :edit , :update]
   resources :bookings
   resources :departments
   resources :departments

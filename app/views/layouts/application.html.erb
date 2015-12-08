@@ -16,7 +16,19 @@
         <div id = "<%= message_type %>" class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
 
+<% if show_logout? %>
+  
+       <ul style="margin-top: 85px;margin-bottom: 10px;margin-left: -80px;width: 130px;border: 1px solid #DDD;margin-right: 35px;" class="nav nav-tabs nav-stacked pull-left">
+    <li role="presentation"><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></li>     
+  <li role="presentation"><%= link_to 'Assign Sub to teachers' , controller: 'teachers' , action: 'index' , assigns: 1 %></li>
+  <li role="presentation"><%= link_to 'Teachers', controller: 'teachers' , action: 'index' , assigns: 0 %></li>
+  <li role="presentation"><%= link_to 'Subjects', controller: 'subjects' %></li>
+</ul>
+         
+<% end %>
+<div style="overflow:hidden;">
     <%= yield %>
+</div>    
   </div>
 
 </body>

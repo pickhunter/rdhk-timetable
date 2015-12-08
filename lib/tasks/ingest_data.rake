@@ -42,3 +42,49 @@ task :ingest_subject  => :environment do
 	    end
 	 end   
 end
+
+task :ingest_batches  => :environment do
+
+	Batch.transaction do
+	Batch.destroy_all
+	BatchSubject.destroy_all
+	end
+
+	sub1 = Subject.find_by_code("HS111")
+	sub2 = Subject.find_by_code("MA111")
+	sub3 = Subject.find_by_code("PH111")
+	sub4 = Subject.find_by_code("EC111")
+	sub5 = Subject.find_by_code("CI111")
+	sub6 = Subject.find_by_code("MA112")
+	sub7 = Subject.find_by_code("PH112")
+
+	 ex = Roo::Excel.new("./public/batches.xls")
+	# (0..5).each do |s|
+		
+	    ex.default_sheet = ex.sheets[0] #Mention the sheet number
+	    # puts s
+	    # puts ex.sheets	
+	    # ex.default_sheet = ex.sheets[s]
+	    (1..ex.last_row).each do |line| #start and end of row
+	    code = ex.cell(line,'A')
+	    year = ex.cell(line,'B')     
+
+	    batch = Batch.create(:name => code,:year => year)
+		    if(line >= 0 && line<=19)
+		    batch.subjects << sub1
+		    batch.subjects << sub2
+		    batch.subjects << sub3
+		    batch.subjects << sub4
+		    batch.subjects << sub5
+			elsif (line>=20 && line<=23)
+		    batch.subjects << sub1
+		    batch.subjects << sub6
+		    batch.subjects << sub7
+		    batch.subjects << sub4
+		    batch.subjects << sub5
+			end
+
+
+	    end
+	 # end   
+end

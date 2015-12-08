@@ -1,0 +1,47 @@
+
+<div class="pull-left ">    
+    <h1>Batch: <%= @batch.name%></h1>
+    <h1> Subject : <%= @subject.name %></h1>
+    <h2>Assign Teacher <h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="1">Teacher</th>
+      <th colspan="1">Assign teacher</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td> <%= teacher.name %></td>
+        <td> <%= link_to 'Assign Teacher' , edit_batch_subject_path(:id => @bs.id, :teacher_id => teacher.id), :method => :patch  %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<% if (@teacher) %>
+
+<div class="pull-right">    
+<h1>Assigned Teacher</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="1">Teacher</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td> <%= @teacher.name %></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<% end %>

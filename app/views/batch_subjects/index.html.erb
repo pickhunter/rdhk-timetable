@@ -1,0 +1,37 @@
+<h1>Listing Batch-Subjects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="1">Batch</th>
+      <th colspan="1">Subject</th>
+      <th colspan="1">Assigned Teacher</th>
+
+      <% if params[:assigns]=='1' %>
+      <th colspan="1">Assign Teacher</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+    	<% subject.batches.each do |batch| %>
+    	<% batch_subject = BatchSubject.find_by(:batch_id => batch.id, :subject_id => subject.id) %>
+      <tr>
+        <td> <%= batch.name %></td>
+        <td> <%= subject.name %></td>
+           <% if (batch_subject.teacher_id) %>
+      <td><%= Teacher.find(batch_subject.teacher_id).name  %></td>
+      <% end %>
+
+    <% if params[:assignt]=='1' %>
+      <td><%= link_to 'Assign teacher' , controller: 'batch_subjects' , action: 'show', :assigns => 1 , :id => batch_subject.id  %></td>
+      <% end %>
+    <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

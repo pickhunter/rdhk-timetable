@@ -1,7 +1,7 @@
 class Teacher < ActiveRecord::Base
   belongs_to :department
   has_and_belongs_to_many :subjects
-  has_and_belongs_to_many :batches
+  has_many :batch_subjects
 
   validates :code, uniqueness: true
   validates :code, presence: true
