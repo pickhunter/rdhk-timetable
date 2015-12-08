@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20151208063201) do
 
+  create_table "batch_subject", force: :cascade do |t|
+    t.integer "batch_id"
+    t.integer "subject_id"
+    t.integer "teacher_id"
+  end
+
   create_table "batch_subjects", force: :cascade do |t|
     t.integer  "batch_id"
     t.integer  "subject_id"
@@ -84,11 +90,6 @@ ActiveRecord::Schema.define(version: 20151208063201) do
   end
 
   add_index "subjects", ["department_id"], name: "index_subjects_on_department_id"
-
-  create_table "subjects_teachers", id: false, force: :cascade do |t|
-    t.integer "subject_id"
-    t.integer "teacher_id"
-  end
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name"

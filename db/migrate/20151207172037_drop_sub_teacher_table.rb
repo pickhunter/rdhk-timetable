@@ -1,4 +1,4 @@
-ass DropSubTeacherTable < ActiveRecord::Migration
+class DropSubTeacherTable < ActiveRecord::Migration
   def change
   	drop_table :subjects_teachers
   end
