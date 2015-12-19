@@ -56,11 +56,18 @@
 
 		<tbody>
 			<% days = timeslots_for_headers[timeslots_for_headers.keys.first].map(&:day).map(&:capitalize) %>
-			<% days.each do |day| %>
+			<% slots_grouped_by_day = @timeslots.group_by do |slot|
+				slot.day.capitalize
+			end %>
+			<% slots_grouped_by_day.keys.each do |day| %>
 				<tr>
 					<td><%= day %></td>
-					<% timeslots_for_headers.length.times do %>
-					<td></td>
+					<% slots_grouped_by_day[day].each do |slot| %>
+						<% if slot.slots.length > 0 %>
+						<td class="bg-danger">FULL</td>
+						<% else %>
+						<td class="bg-success">EMPTY</td>
+						<% end %>
 					<% end %>
 				</tr>
 			<% end %>
