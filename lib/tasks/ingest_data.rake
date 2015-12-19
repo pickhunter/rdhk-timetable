@@ -1,6 +1,31 @@
 require 'rubygems'
 require 'roo'
 
+
+task :ingest_timeslots  => :environment do
+		Timeslot.transaction do
+	Timeslot.destroy_all
+	end
+	 ex = Roo::Excel.new("./public/timeslots.xls")
+		
+	    # ex.default_sheet = ex.sheets[0] #Mention the sheet number
+	    # puts s
+	    # puts ex.sheets	
+	    # puts Time.now - Time.now.seconds_since_midnight + 1.seconds + 9.hours
+	    ex.default_sheet = ex.sheets[0]
+	    (1..ex.last_row).each do |line| #start and end of row
+	    day = ex.cell(line,'A')
+	    starthour = ex.cell(line,'B')
+
+	    starttime = Time.now - Time.now.seconds_since_midnight + 1.seconds + starthour.hours + 5.hours + 30.minutes
+	    puts starttime
+	    endtime= starttime + 1.hours      
+
+	    @timeslot = Timeslot.create(:day => day,:starttime => starttime, :endtime => endtime)
+
+	    end  
+end
+
 task :ingest_teacher  => :environment do
 	 ex = Roo::Excel.new("./public/teachers.xls")
 	(0..5).each do |s|

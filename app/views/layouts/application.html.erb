@@ -2,14 +2,48 @@
 <html>
 <head>
   <title>Timetable</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="timetable" ng-controller="rootController">
+<% if !show_logout? %>
+<div class="jumbotron" style="height:290px;margin-bottom: -7px; ">
+  <div class="container" >
+
+  <img src="images/logo.png"  class="img-responsive" style="width:300px;height:300px;display:inline;margin-bottom: 92px;padding-bottom: 12px;margin-top: -46px;">
+  <h1 style="display: inline;"> College Timetable App </h1>
+  </div>
+</div>
+
+<% end %>
     <% if show_logout? %>
-          <li><%= link_to "Logout", logout_path ,method: "delete" %></li>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+        <img alt=" " src="images/logo2.png" style="width:35px;height:35px;">
+      </a>
+
+      <h1 class="navbar-text">COLLEGE TIMETABLE MANAGEMENT APP</h1>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <h3 class="navbar-text navbar-left">Signed in as <%= session[:username].capitalize %></h3>
+        <li class="navbar-link"><%= link_to "Logout", logout_path ,method: "delete" %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+          
     <% end %>  
+     
+                
 
   <div class="container">
         <% flash.each do |message_type, message| %>
@@ -19,6 +53,7 @@
 <% if show_logout? %>
   
        <ul style="margin-top: 85px;margin-bottom: 10px;margin-left: -80px;width: 130px;border: 1px solid #DDD;margin-right: 35px;" class="nav nav-tabs nav-stacked pull-left">
+  <li role="presentation"><%= link_to 'Make 1st yr Timetable' , controller: 'timeslots' , action: 'index' , year: 1%></li>         
     <li role="presentation"><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></li>     
   <li role="presentation"><%= link_to 'Assign Sub to teachers' , controller: 'teachers' , action: 'index' , assigns: 1 %></li>
   <li role="presentation"><%= link_to 'Teachers', controller: 'teachers' , action: 'index' , assigns: 0 %></li>

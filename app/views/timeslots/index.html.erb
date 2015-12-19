@@ -1,0 +1,123 @@
+<div ng-controller="timeslotController" ng-init="subjects = <%= @subjects.to_json %>; sections = <%= @batches.to_json %>;init()">
+	
+<!-- 	<%= select_tag 'batch1', options_for_select(@batches.collect{ |b| [b.name, b.id] })  %>
+	<%= select_tag 'batch2', options_for_select(@batches.collect{ |b| [b.name, b.id] })  %>
+	<%= select_tag 'batch3', options_for_select(@batches.collect{ |b| [b.name, b.id] })  %> -->
+		 <label>Select Subject
+    <select ng-model="subject" ng-options="subject.id as subject.name for subject in subjects" ng-change="onSubjectChange()">
+    </select>
+    </label>
+
+	 <label>Batch1:
+    <select ng-model="batch1" ng-options="section.id as section.name for section in sections">
+    </select>
+    </label>
+    <label>Batch2:
+    <select ng-model="batch2" ng-options="section.id as section.name for section in _.reject(sections, {id: batch1})">
+    </select>
+    </label>
+    <label>Batch3:
+    <span  class="nullable">
+    <select ng-model="batch3" ng-options="section.id as section.name for section in _.reject(_.reject(sections, {id:batch1}),{id:batch2})">
+    <option value="">NULL</option>
+    </select>
+   </span>
+  </label>
+  
+   <p>{{batch1}}</p> <p>{{batch2}}</p> <p>{{batch3}}</p>
+  </div>
+
+
+
+
+	
+	
+
+	 <%= form_tag({:action => 'index'}, {:method => :get , :year => params[:year]} ) do %>
+	 <%= submit_tag("Find slots") %>
+
+<% end %>
+
+
+
+
+	<div class="table-responsive">
+	  <table class="table table-bordered">
+	  <thead>
+	  <tr>
+	    <th>#</th>
+	    <th>9:00AM -10:00am</th>
+	    <th>10:00AM -11:00am</th>
+	    <th>11:00AM -12:00pm</th>
+	    <th>12:00PM -1:00PM</th>
+	    <th>1:00AM -2:00PM</th>
+	    <th>2:00PM -3:00PM</th>
+	    <th>3:00PM -4:00PM</th>
+	    <th>4:00PM -5:00PM</th>
+	    <th>5:00PM -6:00PM</th>
+	  <tr>  
+	  </thead>
+	  <tbody>
+	 <tr>
+	 <th scope="row">MONDAY</th>
+	     
+	     <% @monday.each do |ts| %>
+	     <% if ((params[:year]=='1' || params[:year]=='3') && ts.starttime.hour == 13) %>
+	     	<td> BREAK </td>
+	     	<% else %>
+	        <td> <%= ts.starttime.hour %></td>
+	        <% end %>
+	     <% end %>   
+	 </tr>
+	  <tr>
+	 <th scope="row">TUESDAY</th>
+	      <% @tuesday.each do |ts| %>
+	        <% if ((params[:year]=='1' || params[:year]=='3') && ts.starttime.hour == 13) %>
+	     		<td> BREAK </td>
+	     	<% else %>
+	        	<td> <%= ts.starttime.hour %></td>
+	        <% end %>
+	     <% end %>   
+	 </tr>
+	  <tr>
+	 <th scope="row">WEDNESDAY</th>
+	      <% @wednesday.each do |ts| %>
+	        <% if ((params[:year]=='1' || params[:year]=='3') && ts.starttime.hour == 13) %>
+	     		<td> BREAK </td>
+	     	<% else %>
+	        	<td> <%= ts.starttime.hour %></td>
+	        <% end %>
+	     <% end %>   
+	 </tr>
+	  <tr>
+	 <th scope="row">THURSDAY</th>
+	      <% @thursday.each do |ts| %>
+	        <% if ((params[:year]=='1' || params[:year]=='3') && ts.starttime.hour == 13) %>
+	     		<td> BREAK </td>
+	     	<% else %>
+	        	<td> <%= ts.starttime.hour %></td>
+	        <% end %>
+	     <% end %>   
+	 </tr>
+	  <tr>
+	 <th scope="row">FRIDAY</th>
+	      <% @friday.each do |ts| %>
+	        <% if ((params[:year]=='1' || params[:year]=='3') && ts.starttime.hour == 13) %>
+	     		<td> BREAK </td>
+	     	<% else %>
+	        	<td> <%= ts.starttime.hour %></td>
+	        <% end %>
+	     <% end %>   
+	 </tr>
+	  <tr>
+	 <th scope="row">SATURDAY</th>
+	      <% @saturday.each do |ts| %>
+	        <td> <%= ts.starttime.hour %></td>
+	     <% end %>   
+	 </tr>
+	</tbody>
+
+
+	  </table>
+	</div>
+</div>

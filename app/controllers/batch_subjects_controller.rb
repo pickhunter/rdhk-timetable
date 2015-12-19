@@ -1,4 +1,5 @@
 class BatchSubjectsController < ApplicationController
+  before_action :confirm_logged_in
   def index
   	if(params[:assignt]=='1')
   		@dept = Department.find_by(:code => session[:username])

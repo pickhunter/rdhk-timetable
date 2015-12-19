@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208063201) do
+ActiveRecord::Schema.define(version: 20151217070116) do
+
+  create_table "batch_subject", force: :cascade do |t|
+    t.integer "batch_id"
+    t.integer "subject_id"
+    t.integer "teacher_id"
+  end
 
   create_table "batch_subjects", force: :cascade do |t|
     t.integer  "batch_id"
@@ -62,16 +68,14 @@ ActiveRecord::Schema.define(version: 20151208063201) do
   end
 
   create_table "slots", force: :cascade do |t|
-    t.string   "label"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "day"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "time_table_id"
+    t.integer  "timeslot_id"
+    t.integer  "batch_id"
+    t.integer  "subject_id"
+    t.integer  "teacher_id"
+    t.integer  "room_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "slots", ["time_table_id"], name: "index_slots_on_time_table_id"
 
   create_table "subjects", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -100,6 +104,14 @@ ActiveRecord::Schema.define(version: 20151208063201) do
 
   create_table "time_tables", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.integer  "day"
+    t.time     "starttime"
+    t.time     "endtime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'timeslots/index'
+  post 'timeslots/update'
+  get 'timeslots/returnbatches'
+   get 'timeslots/returnrembatches'
+
   get 'batch_subjects/index'
 
   patch 'batch_subjects/:id' => 'batch_subjects#update' , :as => 'edit_batch_subject'
