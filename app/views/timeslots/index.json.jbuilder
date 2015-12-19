@@ -1,0 +1,1 @@
+json.array! @timeslots, :id
