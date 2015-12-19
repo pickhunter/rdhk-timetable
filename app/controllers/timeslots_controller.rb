@@ -8,8 +8,10 @@ class TimeslotsController < ApplicationController
       params[:batches].each do |batch_id|
         filtered_timeslots = filtered_timeslots - Batch.find(batch_id).timeslots
       end
+      bs=BatchSubject.where("subject_id = ?",params[:subject_id]).find_by_batch_id(params[:batches][0])
+      tid= bs.teacher_id
 
-      filtered_timeslots = filtered_timeslots - Subject.find(params[:subject_id]).timeslots
+      filtered_timeslots = filtered_timeslots - Teacher.find(tid).timeslots
 
       @timeslots = filtered_timeslots
     end
