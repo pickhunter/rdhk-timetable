@@ -38,8 +38,12 @@ class TimeslotsController < ApplicationController
   end
 
     def returnrembatches
-    subject=Subject.find(params[:subid])
-    @batches=subject.batches
+      teacherid= BatchSubject.where("batch_id = ?",params[:batchid]).find_by_subject_id(params[:subid]).teacher_id
+    @bs=BatchSubject.where("subject_id = ?",params[:subid]).where("teacher_id = ? ",teacherid)
+    @batches = []
+    @bs.each do |b| 
+      @batches << (Batch.find(b.batch_id))
+    end
     render :json => @batches
   end
 

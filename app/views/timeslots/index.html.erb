@@ -9,7 +9,7 @@
     </label>
 
 	 <label>Batch1:
-    <select ng-model="batch1" ng-options="section.id as section.name for section in sections">
+    <select ng-model="batch1" ng-options="section.id as section.name for section in sections" ng-change="onBatchChange()">
     </select>
     </label>
     <label>Batch2:
@@ -55,7 +55,7 @@
 
 
 		<tbody>
-			<% days = timeslots_for_headers[timeslots_for_headers.keys.first].map(&:day).map(&:capitalize) %>
+			<% #days = timeslots_for_headers[timeslots_for_headers.keys.first].map(&:day).map(&:capitalize) %>
 			<% slots_grouped_by_day = @timeslots.group_by do |slot|
 				slot.day.capitalize
 			end %>

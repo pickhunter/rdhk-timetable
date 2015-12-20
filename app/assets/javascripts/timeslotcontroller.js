@@ -16,10 +16,10 @@ angular.module('timetable').controller('timeslotController', function($scope, $h
 			$scope.sections=response.data;
 		})
 	};
-	$scope.onBatchChange = function(batch){
+	$scope.onBatchChange = function(){
 		$http.get('/timeslots/returnrembatches', {
 			params: {
-				batchid: $scope.batch,
+				batchid: $scope.batch1,
 				subid: $scope.subject
 			}
 		}).then(function(response){
