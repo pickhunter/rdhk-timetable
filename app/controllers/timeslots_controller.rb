@@ -6,7 +6,7 @@ class TimeslotsController < ApplicationController
     if params[:subject_id] && params[:batches]
       @filtered_timeslots = @timeslots
       params[:batches].each do |batch_id|
-        if !((defined?(var)).nil?)
+        if !((defined?(batch_id)).nil?)
         @filtered_timeslots = @filtered_timeslots - Batch.find(batch_id).timeslots
         end
       end
@@ -48,15 +48,15 @@ class TimeslotsController < ApplicationController
     render :json => @batches
   end
 
-    def returnbatches
-      @rooms = []
-      allrooms = Room.all.where("type='lec'")
+    def returnrooms
+      rooms = []
+      allrooms = Room.all.where("room_type='lec'")
       allrooms.each do |r|
-        if !(r.timeslots.map(&:id).include?(params[:slotid]))
-          @rooms << r
+         if !r.timeslots.map(&:id).include?(params[:stid])
+          rooms << (r)
         end
       end
-    render :json => @rooms
+    render :json => rooms
   end
 
 

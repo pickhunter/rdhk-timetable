@@ -29,12 +29,14 @@ angular.module('timetable').controller('timeslotController', function($scope, $h
 	};
 
 	$scope.getRooms = function(slotid){
+
 		$http.get('/timeslots/returnrooms', {
 			params: {
-				slotid: slotid
+				stid: slotid
 			}
 		}).then(function(response){
 			console.log(response.data);
+			// $scope.rooms[slotid] = response.data;
 			$scope.rooms[slotid] = response.data;
 		})
 	};
@@ -49,6 +51,36 @@ angular.module('timetable').controller('timeslotController', function($scope, $h
 		debugger
 		window.location = '/timeslots/index?' + $httpParamSerializer(params)
 	};
+
+	$scope.addSlot = function(slotid , batchz ,subid){
+
+$http.post('/slots', {
+			params: {
+			tsid: slotid,
+			year: $scope.year,
+			subject_id: subid,
+			"batches[]": batchz,
+			room: $scope.room[slotid]
+			}
+		}).then(function(){
+			// console.log(response.data);
+			// $scope.rooms[slotid] = response.data;
+			window.location = '/timeslots/index?year=' + '$scope.year'
+		})
+	};
+
+
+
+	// 	var params = {
+	// 		tsid: slotid,
+	// 		year: $scope.year,
+	// 		subject_id: subid,
+	// 		"batches[]": batchz,
+	// 		room: $scope.room[slotid]
+	// 	}
+	// 	debugger
+	// 	window.location = '/slots/create?' + $httpParamSerializer(params)
+	// };
 
 
 });
