@@ -26,6 +26,27 @@ task :ingest_timeslots  => :environment do
 	    end  
 end
 
+task :ingest_rooms  => :environment do
+		Room.transaction do
+	Room.destroy_all
+	end
+	 ex = Roo::Excel.new("./public/rooms.xls")
+		
+	    # ex.default_sheet = ex.sheets[0] #Mention the sheet number
+	    # puts s
+	    # puts ex.sheets	
+	    # puts Time.now - Time.now.seconds_since_midnight + 1.seconds + 9.hours
+	    ex.default_sheet = ex.sheets[0]
+	    (1..ex.last_row).each do |line| #start and end of row
+	    name = ex.cell(line,'A')
+	    type1 = ex.cell(line,'B')
+	    puts name   
+
+	    @room = Room.create(:name => name,:room_type => type1)
+
+	    end  
+end
+
 task :ingest_teacher  => :environment do
 	 ex = Roo::Excel.new("./public/teachers.xls")
 	(0..5).each do |s|

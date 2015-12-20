@@ -2,18 +2,19 @@ class TimeslotsController < ApplicationController
 	before_action :confirm_logged_in
   def index
   	@timeslots = Timeslot.all
-
+    @filtered_timeslots = []
     if params[:subject_id] && params[:batches]
-      filtered_timeslots = @timeslots
+      @filtered_timeslots = @timeslots
       params[:batches].each do |batch_id|
-        filtered_timeslots = filtered_timeslots - Batch.find(batch_id).timeslots
+        if !((defined?(var)).nil?)
+        @filtered_timeslots = @filtered_timeslots - Batch.find(batch_id).timeslots
+        end
       end
       bs=BatchSubject.where("subject_id = ?",params[:subject_id]).find_by_batch_id(params[:batches][0])
       tid= bs.teacher_id
+      @filtered_timeslots = @filtered_timeslots - Teacher.find(tid).timeslots
 
-      filtered_timeslots = filtered_timeslots - Teacher.find(tid).timeslots
 
-      @timeslots = filtered_timeslots
     end
 
   	# @monday = @timeslots.where("day = '0'") 
@@ -45,6 +46,17 @@ class TimeslotsController < ApplicationController
       @batches << (Batch.find(b.batch_id))
     end
     render :json => @batches
+  end
+
+    def returnbatches
+      @rooms = []
+      allrooms = Room.all.where("type='lec'")
+      allrooms.each do |r|
+        if !(r.timeslots.map(&:id).include?(params[:slotid]))
+          @rooms << r
+        end
+      end
+    render :json => @rooms
   end
 
 

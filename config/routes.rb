@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'timeslots/update'
   get 'timeslots/returnbatches'
    get 'timeslots/returnrembatches'
+   get 'timeslots/returnrooms'
 
   get 'batch_subjects/index'
 
