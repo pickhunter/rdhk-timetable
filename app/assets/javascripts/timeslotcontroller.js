@@ -35,7 +35,7 @@ angular.module('timetable').controller('timeslotController', function($scope, $h
 			}
 		}).then(function(response){
 			console.log(response.data);
-			$scope.rooms=response.data;
+			$scope.rooms[slotid] = response.data;
 		})
 	};
 
