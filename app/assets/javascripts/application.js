@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require lodash
 
+//= require app
 //= require_tree .
