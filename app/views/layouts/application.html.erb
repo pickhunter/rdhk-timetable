@@ -52,15 +52,42 @@
 <% if show_logout? %>
   
        <ul style="margin-top: 85px;margin-bottom: 10px;margin-left: -80px;width: 130px;border: 1px solid #DDD;margin-right: 35px;" class="nav nav-tabs nav-stacked pull-left">
-  <li role="presentation"><%= link_to 'Subjects', controller: 'subjects' %></li> 
-    <li role="presentation"><%= link_to 'Teachers', controller: 'teachers' , action: 'index' , assigns: 0 %></li> 
-    <li role="presentation"><%= link_to 'Assign Sub to teachers' , controller: 'teachers' , action: 'index' , assigns: 1 %></li> 
-    <li role="presentation"><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></li>    
-    <li role="presentation"><%= link_to 'Make 1st yr Timetable' , controller: 'timeslots' , action: 'index' , year: 1%></li>       
-    <li role="presentation"><%= link_to 'Show teachers timetable' , controller: 'teachers' , action: 'index' , assigns: 2 %></li>
-   <li role="presentation"><%= link_to 'Show room occupancy sheet' , controller: 'rooms' , action: 'index' %></li>
-  <li role="presentation"><%= link_to 'Show batch timetable' , controller: 'batches' , action: 'index' %></li>
-    <li role="presentation"><%= link_to 'Show 1st year timetable' , controller: 'timeslots' , action: 'yearindex' ,year: 1 %></li>
+        <li role="presentation">
+        <%= link_to controller: 'subjects' do %>
+          <span class="fa fa-fw fa-book"></span>
+          <span>Subjects</span>
+        </li>
+        <% end %>
+      <li role="presentation"><%= link_to  controller: 'teachers' , action: 'index' , assigns: 0 do %>
+        <span class="fa fa-fw fa-user-md"></span><span>Teachers</span>
+        <% end %>
+      </li> 
+    <li role="presentation"><%= link_to  controller: 'teachers' , action: 'index' , assigns: 1 do %>
+    <span class="fa fa-fw fa-pencil"></span><span>Assign Sub To Teachers</span>
+    <% end %>
+    </li> 
+    <li role="presentation"><%= link_to  controller: 'batch_subjects' , action: 'yearindex' do %>
+        <span class="fa fa-fw fa-institution"></span><span>Assign Teachers to BatchSubjects</span>
+    <% end %>
+    </li>    
+    <li role="presentation"><%= link_to  controller: 'timeslots' , action: 'yearmakeindex' do %>
+    <span class="fa fa-fw fa-hourglass-1"></span><span> Make Timetable </span>
+    <% end %>
+    </li>       
+    <li role="presentation"><%= link_to controller: 'teachers' , action: 'index' , assigns: 2 do %>
+        <span class="fa fa-fw fa-calendar-check-o"></span><span> Show teachers timetable  </span>
+    <% end %>
+    </li> 
+   <li role="presentation"><%= link_to controller: 'rooms' , action: 'index' do %>        <span class="fa fa-fw fa-th-list"></span><span> Show room occupancy sheet </span>
+    <% end %>
+    </li> 
+  <li role="presentation"><%= link_to  controller: 'batches' , action: 'index' do %>        <span class="fa fa-fw fa-graduation-cap"></span><span>Show batch timetable</span>
+    <% end %>
+    </li> 
+    <li role="presentation"><%= link_to controller: 'timeslots' , action: 'yearshowindex'  do %> 
+    <span class="fa fa-fw fa-calendar"></span><span> Show year timetables </span>
+    <% end %>
+    </li> 
 
 </ul>
          

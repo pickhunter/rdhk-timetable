@@ -45,7 +45,11 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to  controller: 'teachers' , action: 'index' , assigns: 1 do %>
+    <span class="fa fa-fw fa-arrow-left"></span><span>Back to Teachers</span>
+    <% end %>
 </div>
+
 
       
 <% else %>

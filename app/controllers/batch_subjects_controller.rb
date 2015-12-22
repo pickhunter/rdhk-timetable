@@ -8,6 +8,9 @@ class BatchSubjectsController < ApplicationController
   	end
   end
 
+  def yearindex
+  end
+
   def show
   	@bs= BatchSubject.find(params[:id])
   	@subject = Subject.find_by_id(@bs.subject_id)

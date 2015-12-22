@@ -45,6 +45,12 @@ class TimeslotsController < ApplicationController
     @filtered_timeslots = ts.uniq
   end
 
+  def yearmakeindex
+  end
+
+  def yearshowindex
+  end
+
   def returnbatches
     subject=Subject.find(params[:subid])
     @batches=subject.batches

@@ -1,0 +1,25 @@
+<h1>Assign Teachers to Batch Subjects</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+          <th colspan="1">Year</th>
+      <th colspan="1">Assign Teachers</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+      <td>1</td>
+      <td><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></td>
+      </tr>
+       <tr>
+       <td>2</td>
+      <td><%= link_to 'Assign Teachers to 2nd Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 2%></td>
+      </tr>
+       <tr>
+       <td>3</td>
+      <td><%= link_to 'Assign Teachers to 3rd Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 3%></td>
+      </tr>
+  </tbody>
+</table>  

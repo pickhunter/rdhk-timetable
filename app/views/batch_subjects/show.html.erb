@@ -22,7 +22,9 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: @batch.year do%><span class="fa fa-arrow-left"></span> <span>Back to Batch Subjects</span><%end %>
 </div>
+
 
 <% if (@teacher) %>
 

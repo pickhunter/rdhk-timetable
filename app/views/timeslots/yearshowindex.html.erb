@@ -1,0 +1,27 @@
+<h1>Show Timetable</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+          <th colspan="1">Year</th>
+      <th colspan="1">Show Timetable</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+      <td>1</td>
+      <td><%= link_to 'Show 1st year timetable' , controller: 'timeslots' , action: 'yearindex' ,year: 1 %></li></td>
+      </tr>
+       <tr>
+       <td>2</td>
+      <td><%= link_to 'Show 2nd year timetable' , controller: 'timeslots' , action: 'yearindex' ,year: 2 %></td>
+      </tr>
+       <tr>
+       <td>3</td>
+      <td><%= link_to 'Show 3rd year timetable' , controller: 'timeslots' , action: 'yearindex' ,year: 3 %></td>
+      </tr>
+  </tbody>
+</table>    
+
+   

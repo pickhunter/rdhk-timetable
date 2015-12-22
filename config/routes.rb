@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   get 'timeslots/returnbatches'
    get 'timeslots/returnrembatches'
    get 'timeslots/returnrooms'
+   get 'timeslots/yearmakeindex'
+   get 'timeslots/yearshowindex'
    get 'teachers/showteachertt/:id' => 'teachers#showteachertt'
    get 'rooms/showroomtt/:id' => 'rooms#showroomtt'
 
   get 'batch_subjects/index'
+  get 'batch_subjects/yearindex'
+
 
   patch 'batch_subjects/:id' => 'batch_subjects#update' , :as => 'edit_batch_subject'
   get 'batch_subjects/:id' => 'batch_subjects#show'
