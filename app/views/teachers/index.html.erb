@@ -20,6 +20,9 @@
         <td> <%= teacher.name %></td>
     <% if params[:assigns]=='1' %>
       <td><%= link_to 'Assign Subject', teacher_subjects_path(teacher.id, :assigns => 1)  %></td>
+    <% elsif params[:assigns]=='2' %>
+      <td><%= link_to 'Show timetable',  controller: 'teachers' , action: 'showteachertt', :id => teacher.id  %></td>
+      
     <% end %>
 
       </tr>

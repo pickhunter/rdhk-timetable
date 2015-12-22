@@ -6,7 +6,8 @@ class TimeslotsController < ApplicationController
     if params[:subject_id] && params[:batches]
       @filtered_timeslots = @timeslots
       params[:batches].each do |batch_id|
-        if !((defined?(batch_id)).nil?)
+        # if !((defined?(batch_id)).nil?)
+        if !(batch_id == "undefined" )
         @filtered_timeslots = @filtered_timeslots - Batch.find(batch_id).timeslots
         end
       end
@@ -52,7 +53,7 @@ class TimeslotsController < ApplicationController
       rooms = []
       allrooms = Room.all.where("room_type='lec'")
       allrooms.each do |r|
-         if !r.timeslots.map(&:id).include?(params[:stid])
+         if !r.timeslots.map(&:id).include?(params[:stid].to_i)
           rooms << (r)
         end
       end

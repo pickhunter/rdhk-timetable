@@ -22,6 +22,14 @@ before_action :confirm_logged_in
   def edit
   end
 
+  def showroomtt
+    @timeslots = Timeslot.all
+    @filtered_timeslots=Room.find(params[:id]).timeslots
+    @rid=params[:id].to_i
+    @sub
+    @teacher
+  end
+
   # POST /rooms
   # POST /rooms.json
   def create

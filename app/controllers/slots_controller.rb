@@ -37,10 +37,13 @@ class SlotsController < ApplicationController
     #   end
     # end
     # create a slot
-    binding.pry
-    tid=BatchSubject.where("batch_id=?",params[:batches][0]).find_by_subject_id(params[:subject_id]).teacher_id
-    params[:batches].each do |batchid|
-        if !((defined?(batchid)).nil?)
+    # binding.pry
+    # puts params.inspect
+    # puts params[:batches][0]
+    tid=BatchSubject.where("batch_id=?",params['batches[]'][0]).find_by_subject_id(params[:subject_id]).teacher_id
+    # params[:batches[]].each do |batchid|
+    params['batches[]'].each do |batchid|
+        if !(batchid == "undefined" )
 
         slot = Slot.new
         Batch.find(batchid).slots << slot
@@ -51,7 +54,7 @@ class SlotsController < ApplicationController
         end
     end
     flash[:notice] = "Slot assigned in table succesfully."
-  redirect_to controller: 'timeslots' , action: 'index', year: params[:year]
+  # redirect_to controller: 'timeslots' , action: 'index', year: params[:year]
   end
 
   # PATCH/PUT /slots/1

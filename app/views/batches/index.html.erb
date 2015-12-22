@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Batches</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="1">Batch</th>
+      <th colspan="1">Show batch timetable</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @batches.each do |batch| %>
+      <tr>
+        <td> <%= batch.name %></td>
+      <td><%= link_to 'Show batch timetable',  controller: 'batches' , action: 'showbatchtt', :id => batch.id  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

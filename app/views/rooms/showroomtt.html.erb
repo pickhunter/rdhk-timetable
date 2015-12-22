@@ -1,0 +1,50 @@
+<div class="table-responsive">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<% timeslots_for_headers = @timeslots.group_by do |slot|
+					"#{slot.starttime.strftime '%l:%M %p'} - #{slot.endtime.strftime '%l:%M %p'}"
+				end
+				%>
+				<% timeslots_for_headers.keys.each do |timeslot| %>
+				<th><%= timeslot %></th>
+				<% end %>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<% #days = timeslots_for_headers[timeslots_for_headers.keys.first].map(&:day).map(&:capitalize) %>
+			<% slots_grouped_by_day = @timeslots.group_by do |slot|
+				slot.day.capitalize
+			end %>
+			<% slots_grouped_by_day.keys.each do |day| %>
+				<tr>
+					<td><%= day %></td>
+					<% slots_grouped_by_day[day].each do |slot| %>
+						<% if @filtered_timeslots.map(&:id).include?(slot.id)  %>
+						<td class="bg-danger">
+							<p>
+							<span class="fa fa-calendar-check-o fa-1x"></span>
+							<% slot.slots.each do |s| %>
+								<%  if(s.room_id == @rid) %>
+								<%= s.batch.name %>	
+								<% @sub= s.subject.code%>
+								<% @teacher = s.teacher.code %>
+								<% end %>	
+							<% end %> -<%= Room.find(@rid).room_type.upcase %>
+							 -<%= @sub %> - <%= @teacher %> 
+
+							</p>
+						</td>
+						<% else %>
+						<td class="bg-info"></td>
+
+						<% end %>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

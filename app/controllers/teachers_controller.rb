@@ -26,6 +26,16 @@ class TeachersController < ApplicationController
 
   # POST /teachers
   # POST /teachers.json
+
+  def showteachertt
+    
+    @timeslots = Timeslot.all
+    @filtered_timeslots=Teacher.find(params[:id]).timeslots
+    @tid=params[:id].to_i
+    @sub
+    @room
+  end
+
   def create
     @teacher = Teacher.new(teacher_params)
 

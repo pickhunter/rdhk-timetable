@@ -23,7 +23,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
           <a class="navbar-brand" href="#">
-        <img alt=" " src="images/logo2.png" style="width:35px;height:35px;">
+        <span class="fa fa-calendar fa-2x"></span>
       </a>
 
       <h1 class="navbar-text">COLLEGE TIMETABLE MANAGEMENT APP</h1>
@@ -33,7 +33,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <h3 class="navbar-text navbar-left">Signed in as <%= session[:username].capitalize %></h3>
+        <h3 class="navbar-text navbar-left"><span class="fa fa-user fa-1x"></span> Signed in as <%= session[:username].capitalize %></h3>
         <li class="navbar-link"><%= link_to "Logout", logout_path ,method: "delete" %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -52,11 +52,15 @@
 <% if show_logout? %>
   
        <ul style="margin-top: 85px;margin-bottom: 10px;margin-left: -80px;width: 130px;border: 1px solid #DDD;margin-right: 35px;" class="nav nav-tabs nav-stacked pull-left">
-  <li role="presentation"><%= link_to 'Make 1st yr Timetable' , controller: 'timeslots' , action: 'index' , year: 1%></li>         
-    <li role="presentation"><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></li>     
-  <li role="presentation"><%= link_to 'Assign Sub to teachers' , controller: 'teachers' , action: 'index' , assigns: 1 %></li>
-  <li role="presentation"><%= link_to 'Teachers', controller: 'teachers' , action: 'index' , assigns: 0 %></li>
-  <li role="presentation"><%= link_to 'Subjects', controller: 'subjects' %></li>
+  <li role="presentation"><%= link_to 'Subjects', controller: 'subjects' %></li> 
+    <li role="presentation"><%= link_to 'Teachers', controller: 'teachers' , action: 'index' , assigns: 0 %></li> 
+    <li role="presentation"><%= link_to 'Assign Sub to teachers' , controller: 'teachers' , action: 'index' , assigns: 1 %></li> 
+    <li role="presentation"><%= link_to 'Assign Teachers to 1st Year BatchSubjects' , controller: 'batch_subjects' , action: 'index' , assignt: 1 , year: 1%></li>    
+    <li role="presentation"><%= link_to 'Make 1st yr Timetable' , controller: 'timeslots' , action: 'index' , year: 1%></li>       
+    <li role="presentation"><%= link_to 'Show teachers timetable' , controller: 'teachers' , action: 'index' , assigns: 2 %></li>
+   <li role="presentation"><%= link_to 'Show room occupancy sheet' , controller: 'rooms' , action: 'index' %></li>
+  <li role="presentation"><%= link_to 'Show batch timetable' , controller: 'batches' , action: 'index' %></li>
+
 </ul>
          
 <% end %>

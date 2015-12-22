@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get 'batches/index'
+
+  get 'batches/showbatchtt/:id' => 'batches#showbatchtt'
+
   get 'timeslots/index'
   post 'timeslots/update'
   get 'timeslots/returnbatches'
    get 'timeslots/returnrembatches'
    get 'timeslots/returnrooms'
+   get 'teachers/showteachertt/:id' => 'teachers#showteachertt'
+   get 'rooms/showroomtt/:id' => 'rooms#showroomtt'
 
   get 'batch_subjects/index'
 

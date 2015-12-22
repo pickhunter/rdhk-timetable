@@ -55,17 +55,15 @@ angular.module('timetable').controller('timeslotController', function($scope, $h
 	$scope.addSlot = function(slotid , batchz ,subid){
 
 $http.post('/slots', {
-			params: {
 			tsid: slotid,
 			year: $scope.year,
 			subject_id: subid,
 			"batches[]": batchz,
 			room: $scope.room[slotid]
-			}
 		}).then(function(){
 			// console.log(response.data);
 			// $scope.rooms[slotid] = response.data;
-			window.location = '/timeslots/index?year=' + '$scope.year'
+			window.location = '/timeslots/index?year=' + $scope.year
 		})
 	};
 
