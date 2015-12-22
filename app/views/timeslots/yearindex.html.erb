@@ -1,0 +1,53 @@
+<div class="table-responsive">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<% timeslots_for_headers = @timeslots.group_by do |slot|
+					"#{slot.starttime.strftime '%l:%M %p'} - #{slot.endtime.strftime '%l:%M %p'}"
+				end
+				%>
+				<% timeslots_for_headers.keys.each do |timeslot| %>
+				<th><%= timeslot %></th>
+				<% end %>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<% #days = timeslots_for_headers[timeslots_for_headers.keys.first].map(&:day).map(&:capitalize) %>
+			<% slots_grouped_by_day = @timeslots.group_by do |slot|
+				slot.day.capitalize
+			end %>
+			<% slots_grouped_by_day.keys.each do |day| %>
+				<tr>
+					<td><%= day %></td>
+					<% slots_grouped_by_day[day].each do |slot| %>
+						<% if @filtered_timeslots.map(&:id).include?(slot.id)  %>
+						<td class="bg-danger">
+
+						<% slots_grouped_by_tsroom = slot.slots.group_by(&:room_id)%>
+								
+							<% slots_grouped_by_tsroom.keys.each do |room| %>
+								<% #binding.pry %>
+								<% if @batches.map(&:id).include?(slots_grouped_by_tsroom[room].first.batch_id) %>
+									<p>
+									<span class="fa fa-calendar-check-o fa-1x"></span>
+									<%= slots_grouped_by_tsroom[room].map {|slot| slot.batch.name }.join(",") %>
+									-<%= slots_grouped_by_tsroom[room].first.room.room_type.upcase %>	
+									-<%= slots_grouped_by_tsroom[room].first.subject.code %> -	<%= slots_grouped_by_tsroom[room].first.teacher.code %>	- <%= slots_grouped_by_tsroom[room].first.room.name %>	
+									</p>	
+
+								<% end %>
+							<% end %>
+						</td>
+						<% else %>
+						<td class="bg-info"></td>
+
+						<% end %>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

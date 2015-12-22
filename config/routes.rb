@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'batches/index'
 
   get 'batches/showbatchtt/:id' => 'batches#showbatchtt'
+  get 'timeslots/yearindex'
 
   get 'timeslots/index'
   post 'timeslots/update'

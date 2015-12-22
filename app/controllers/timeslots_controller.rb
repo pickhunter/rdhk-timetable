@@ -33,6 +33,18 @@ class TimeslotsController < ApplicationController
 
   end
 
+
+  def yearindex
+    @timeslots = Timeslot.all
+    year = params[:year].to_i
+    @batches =  Batch.all.where("year = ?", year)
+    ts =[]
+    @batches.each do |batch|
+      ts = ts + batch.timeslots
+    end
+    @filtered_timeslots = ts.uniq
+  end
+
   def returnbatches
     subject=Subject.find(params[:subid])
     @batches=subject.batches
